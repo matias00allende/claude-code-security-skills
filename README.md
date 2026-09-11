@@ -46,6 +46,11 @@ cp -r ssllabs/ "$USERPROFILE/.claude/skills/ssllabs/"
 cp -r ssllabs/ "$HOME/.claude/skills/ssllabs/"
 ```
 
+## Autor
+
+Matías Allende
+[LinkedIn](https://www.linkedin.com/in/matiasallende/) · matias.allende.contreras@gmail.com
+
 ## Licencia
 
 MIT. Ver [LICENSE](LICENSE).
