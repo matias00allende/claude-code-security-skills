@@ -7,7 +7,7 @@ description: >
   Forward Secrecy, HSTS y vencimiento de certificado. Usar cuando el usuario
   diga "ssllabs", "verifica el TLS de", "revisa el certificado de", "que grado
   SSL tiene", "escanea SSL de", "audita el HTTPS de", "checkeo TLS", o como
-  parte de auditorias de seguridad de sistemas web con exposicion publica. No
+  parte de auditorías de seguridad de sistemas web con exposición pública. No
   usar para servidores sin exposicion publica a internet (la API de SSL Labs
   no puede alcanzarlos) ni para escaneos de dominios de terceros sin
   autorización.
@@ -27,7 +27,7 @@ Wrapper: `scripts/ssllabs_check.py` (incluido en esta skill). Documentación ofi
 ## Alcance y restricciones (leer antes de ejecutar)
 
 - Solo aplica a **hosts con exposición pública a internet** resolubles por SSL Labs (servidores web, balanceadores, CDN). No sirve para servidores internos/on-prem sin publicación externa - para esos casos usar `openssl s_client` local o la skill `auditar` de esta colección.
-- El script solo evalúa, por defecto, los dominios que tú mismo declares como propios (ver `--restrict-to` en Paso 0). Para evaluar un dominio de terceros (ej. un proveedor contratado) se requiere levantar esa restricción explícitamente y tener **confirmación de que hay autorización o interés legítimo** (ej. debida diligencia de un proveedor).
+- Si configuras `--restrict-to` (ver Paso 0), el script solo evalúa los dominios que declaraste como propios. Para evaluar un dominio de terceros (ej. un proveedor contratado) se requiere levantar esa restricción explícitamente y tener **confirmación de que existe autorización para evaluar ese dominio** (ej. un proveedor contratado que la otorgó).
 - **Nunca usar `--publish`** salvo que se pida explícitamente: expone el resultado (incluyendo IP, grado y detalle de vulnerabilidades) en los boards públicos de SSL Labs, visibles por cualquiera.
 - Cada evaluación nueva (`startNew=on`) tarda un mínimo de ~60 segundos; el script hace polling automático. No lanzar evaluaciones repetidas del mismo host en paralelo - la API limita evaluaciones concurrentes por cliente (headers `X-Max-Assessments` / `X-Current-Assessments`).
 - Regla de uso de la API (Qualys): gratuita para que operadores prueben **su propia infraestructura**. Uso comercial o de terceros sin relación requiere permiso explícito de Qualys.
